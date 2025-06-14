@@ -421,7 +421,7 @@ To ensure file integrity and authenticity:
 
 * All official releases are **digitally signed** using _TekkSchuster_ private key.
 * Each release includes a **SHA-256 checksum** posted alongside the official file.
-* Users are encouraged to **verify the JAR signature** using the `jarsigner` tool, and confirm that the hash matches the one published by _TekkSchuster_.
+* Users are encouraged to **verify the SHA Checksum** and confirm that the hash matches the one published by _TekkSchuster_.
 
 Instructions and verification information are available in the designated release channels on Discord.
 
