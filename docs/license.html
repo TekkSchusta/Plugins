@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License - _TekkSchuster_ Plugins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-primary: #238636;
+            --accent-hover: #2ea043;
+            --border-color: #30363d;
+            --warning-color: #f85149;
+            --warning-bg: rgba(248, 81, 73, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--accent-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s ease;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* License Content */
+        .license-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 48px;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .license-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .license-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .license-version {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .license-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .license-section {
+            margin-bottom: 32px;
+        }
+
+        .license-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .license-section p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .license-section ul {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .license-section li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .important-notice {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .important-notice h4 {
+            color: var(--warning-color);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .important-notice p {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            text-align: center;
+            margin-top: 64px;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            margin: 5% auto;
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .contact-info {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .discord-tag {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            color: #5865f2;
+            background: rgba(88, 101, 242, 0.1);
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .license-container {
+                padding: 24px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i>
+                _TekkSchuster_ Plugins
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="license.html" class="active">License</a></li>
+                <li><a href="#" onclick="openContactModal()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Software License</h1>
+                <p>Legal terms and conditions governing the use of _TekkSchuster_ plugins and software.</p>
+            </div>
+
+            <div class="license-container fade-in">
+                <div class="license-header">
+                    <div class="license-title">_TekkSchuster_ PROPRIETARY LICENSE</div>
+                    <div class="license-version">Version 1.0 – 2025</div>
+                    <div class="copyright">Copyright (c) 2025 _TekkSchuster_. All rights reserved.</div>
+                </div>
+
+                <div class="license-content">
+                    <p>This License Agreement ("Agreement") governs the use of all plugins ("Software") developed and released by _TekkSchuster_ in this repository or any related official platform.</p>
+                    
+                    <p>By installing, copying, downloading, or using any Software provided under this Agreement, you agree to be bound by its terms. If you do not accept these terms, you may not use the Software.</p>
+
+                    <div class="license-section">
+                        <h3>1. Ownership</h3>
+                        <p>All rights, title, and interest in the Software — including all intellectual property rights — remain exclusively with _TekkSchuster_. This License does not grant ownership or any rights not expressly stated herein.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>2. Grant of License</h3>
+                        <p>You are granted a limited, non-exclusive, non-transferable, and non-sublicensable license to use the Software <strong>solely for personal or non-commercial use</strong> on Minecraft servers.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>3. Restrictions</h3>
+                        <p>You may <strong>not</strong>, under any circumstances:</p>
+                        <ul>
+                            <li>Redistribute, resell, sublicense, rent, or publicly share the Software</li>
+                            <li>Modify, decompile, disassemble, reverse engineer, or attempt to access the source code</li>
+                            <li>Claim authorship or create derivative works based on the Software</li>
+                            <li>Remove or obscure copyright or proprietary notices</li>
+                            <li>Circumvent gameplay or technical restrictions defined by _TekkSchuster_</li>
+                            <li>Store the Software or related elements in restricted in-game containers if disallowed (e.g., ender chests, shulker boxes, hoppers, barrels)</li>
+                        </ul>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>4. Termination</h3>
+                        <p>This License will terminate immediately if any term is violated. Upon termination, you must discontinue use of the Software and delete all copies in your possession or control.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>5. Disclaimer of Warranty</h3>
+                        <p>The Software is provided <strong>"AS IS"</strong>, without warranties of any kind, express or implied. This includes but is not limited to:</p>
+                        <ul>
+                            <li>Warranties of merchantability</li>
+                            <li>Fitness for a particular purpose</li>
+                            <li>Accuracy or reliability</li>
+                            <li>Compatibility with other plugins or platforms</li>
+                        </ul>
+                        <p>You use the Software entirely at your own risk.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>6. Limitation of Liability</h3>
+                        <p>Under no circumstances shall _TekkSchuster_ be liable for:</p>
+                        <ul>
+                            <li>Data loss</li>
+                            <li>Server outages or performance issues</li>
+                            <li>Player-related disruptions</li>
+                            <li>Security breaches</li>
+                            <li>Conflicts with third-party software</li>
+                            <li>Any indirect, incidental, special, or consequential damages</li>
+                        </ul>
+                        <p>Responsibility for misuse or abuse — whether intentional or accidental — lies solely with the server owner or user.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>7. Governing Law and Jurisdiction</h3>
+                        <p>This Agreement is governed by the laws of the <strong>Federal Republic of Germany</strong>. Legal disputes shall be handled exclusively in the competent courts of Germany.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>8. Contact</h3>
+                        <p>For licensing inquiries, commercial permissions, or legal concerns, contact _TekkSchuster_ via the official GitHub profile or designated support links.</p>
+                    </div>
+
+                    <div class="license-section">
+                        <h3>9. Official Distribution and Verification</h3>
+                        <p>The Software is <strong>only officially distributed via _TekkSchuster_'s GitHub repository or GitHub Pages site</strong>. Any copy obtained from third-party sources, unofficial mirrors, or external forums is considered <strong>unauthorized and unsupported</strong>.</p>
+                        
+                        <p>To ensure authenticity and integrity:</p>
+                        <ul>
+                            <li>Official <code>.jar</code> files may be <strong>digitally signed</strong> by _TekkSchuster_</li>
+                            <li>Each release may include a <strong>SHA-256 checksum</strong> for verification</li>
+                            <li>Users are encouraged to verify file authenticity using tools such as <code>jarsigner</code>, <code>gpg</code>, or a checksum utility</li>
+                        </ul>
+                        
+                        <p>_TekkSchuster_ assumes no liability for modified, rehosted, or redistributed versions of the Software obtained outside of authorized GitHub channels. Use of such files is at your own risk.</p>
+                    </div>
+
+                    <div class="important-notice">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Important Notice</h4>
+                        <p>By downloading or using any _TekkSchuster_ plugin, you acknowledge that you have read, understood, and agree to be bound by all terms of this license agreement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Get in Touch</h2>
+            <p>Have questions about the plugins or need support?</p>
+            
+            <div class="contact-info">
+                <h3 style="margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fab fa-discord" style="color: #5865f2;"></i>
+                    Discord
+                </h3>
+                <div class="discord-tag">_TekkSchuster_</div>
+                <p style="margin-top: 16px; font-size: 14px; color: var(--text-secondary);">Best way to reach me for plugin support and questions</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 _TekkSchuster_ Plugins. Hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(13, 17, 23, 0.95)';
+            } else {
+                header.style.background = 'rgba(13, 17, 23, 0.8)';
+            }
+        });
+
+        // Contact modal
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeContactModal();
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
