@@ -1002,10 +1002,7 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                             <i class="fas fa-cube"></i>
                             <span>1.21+</span>
                         </div>
-                        <div class="detail-item">
-                            <i class="fas fa-download"></i>
-                            <span>3 downloads</span>
-                        </div>
+
                         <div class="detail-item">
                             <i class="fas fa-calendar"></i>
                             <span>14/06/2025</span>
@@ -1027,18 +1024,18 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                     </div>
                     
                     <div class="download-buttons-group">
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/pale-garden-plugin-1.0.0.jar')">
+                        <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/pale-garden-plugin-1.0.0.jar" download>
                             <i class="fas fa-download"></i>
                             Download
-                        </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/LICENSE.txt')">
+                        </a>
+                        <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/LICENSE.txt" download>
                             <i class="fas fa-download"></i>
                             License
-                        </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/README.md')">
+                        </a>
+                        <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/README.md" download>
                             <i class="fas fa-download"></i>
                             ReadMe
-                        </button></div>
+                        </a></div>
                 </div>
                 <!-- DiscordBridge -->
                 <div class="plugin-card  fade-in">
@@ -1062,10 +1059,7 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                             <i class="fas fa-cube"></i>
                             <span>1.21+</span>
                         </div>
-                        <div class="detail-item">
-                            <i class="fas fa-download"></i>
-                            <span>0 downloads</span>
-                        </div>
+
                         <div class="detail-item">
                             <i class="fas fa-calendar"></i>
                             <span>14/06/2025</span>
@@ -1087,18 +1081,18 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                     </div>
                     
                     <div class="download-buttons-group">
-                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/DiscordBridge-1.0.0.jar')">
+                        <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/DiscordBridge-1.0.0.jar" download>
                             <i class="fas fa-download"></i>
                             Download
-                        </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/LICENSE.txt')">
+                        </a>
+                        <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/LICENSE.txt" download>
                              <i class="fas fa-download"></i>
                              License
-                         </button>
-                         <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/README.md')">
+                         </a>
+                         <a class="download-button" href="https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/README.md" download>
                              <i class="fas fa-download"></i>
                              README
-                         </button></div>
+                         </a></div>
                 </div>
             </div>
         </div>
@@ -1182,229 +1176,6 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-    
-        // Persistent download tracking that modifies the HTML file itself
-        async function handleDownload(pluginId, downloadUrl) {
-            try {
-                // Get current download count from the DOM
-                const currentCount = getCurrentDownloadCount(pluginId);
-                const newCount = currentCount + 1;
-                
-                // Update the HTML file with new count
-                await updateHTMLFile(pluginId, newCount);
-                
-                // Update UI immediately
-                updateDownloadCount(pluginId, newCount);
-                
-                // Show download notification
-                showDownloadNotification(newCount);
-                
-                // Also save to localStorage as backup
-                saveToLocalStorage(pluginId, newCount);
-                
-            } catch (error) {
-                console.error('Error updating download count:', error);
-                // Fallback to localStorage only
-                fallbackTrackDownload(pluginId);
-            }
-            
-            // Trigger actual download
-            window.open(downloadUrl, '_blank');
-        }
-        
-        // Get current download count from DOM
-        function getCurrentDownloadCount(pluginId) {
-            const downloadButtons = document.querySelectorAll(`[onclick*="handleDownload('${pluginId}'"]`);
-            if (downloadButtons.length > 0) {
-                const pluginCard = downloadButtons[0].closest('.plugin-card');
-                if (pluginCard) {
-                    const downloadSpan = pluginCard.querySelector('.fas.fa-download').nextElementSibling;
-                    if (downloadSpan) {
-                        const match = downloadSpan.textContent.match(/(\d+)/);
-                        return match ? parseInt(match[1]) : 0;
-                    }
-                }
-            }
-            return 0;
-        }
-        
-        // Update the HTML file with new download count
-        async function updateHTMLFile(pluginId, newCount) {
-            try {
-                // Get the current HTML content
-                const response = await fetch(window.location.href);
-                let htmlContent = await response.text();
-                
-                // Find and replace the download count for this plugin
-                const regex = new RegExp(
-                    `(handleDownload\\('${pluginId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'[^>]*>[\s\S]*?<i class="fas fa-download"><\/i>\s*<span>)\d+(\s*downloads<\/span>)`,
-                    'g'
-                );
-                
-                const updatedContent = htmlContent.replace(regex, `$1${newCount}$2`);
-                
-                // Try to save using File System Access API (if supported)
-                if ('showSaveFilePicker' in window) {
-                    const fileHandle = await window.showSaveFilePicker({
-                        suggestedName: 'downloads.html',
-                        types: [{
-                            description: 'HTML files',
-                            accept: { 'text/html': ['.html'] }
-                        }]
-                    });
-                    
-                    const writable = await fileHandle.createWritable();
-                    await writable.write(updatedContent);
-                    await writable.close();
-                    
-                    console.log('Download count updated in HTML file');
-                } else {
-                    // Fallback: Create download link for updated file
-                    const blob = new Blob([updatedContent], { type: 'text/html' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'downloads_updated.html';
-                    a.style.display = 'none';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    
-                    console.log('Updated HTML file downloaded. Please replace the original file.');
-                }
-                
-            } catch (error) {
-                console.error('Error updating HTML file:', error);
-                throw error;
-            }
-        }
-        
-        // Save to localStorage as backup
-        function saveToLocalStorage(pluginId, count) {
-            let downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
-            
-            if (!downloadStats[pluginId]) {
-                downloadStats[pluginId] = { downloads: 0, lastDownload: null };
-            }
-            
-            downloadStats[pluginId].downloads = count;
-            downloadStats[pluginId].lastDownload = new Date().toISOString();
-            
-            localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
-        }
-        
-        // Fallback tracking using localStorage only
-        function fallbackTrackDownload(pluginId) {
-            let downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
-            
-            if (!downloadStats[pluginId]) {
-                downloadStats[pluginId] = { downloads: 0, lastDownload: null };
-            }
-            
-            downloadStats[pluginId].downloads++;
-            downloadStats[pluginId].lastDownload = new Date().toISOString();
-            
-            localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
-            
-            // Update download count in UI
-            updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
-            
-            // Show download notification
-            showDownloadNotification(downloadStats[pluginId].downloads);
-        }
-        
-        function updateDownloadCount(pluginId, count) {
-            // Find and update download count in the UI using multiple methods
-            const pluginCards = document.querySelectorAll('.plugin-card');
-            
-            pluginCards.forEach(card => {
-                // Check if this card contains the plugin by looking at download buttons
-                const downloadButtons = card.querySelectorAll('.download-button');
-                let isCorrectCard = false;
-                
-                downloadButtons.forEach(button => {
-                    const onclick = button.getAttribute('onclick');
-                    if (onclick && onclick.includes(pluginId)) {
-                        isCorrectCard = true;
-                    }
-                });
-                
-                if (isCorrectCard) {
-                    // Find the download count element (it's the second detail-item with fa-download icon)
-                    const detailItems = card.querySelectorAll('.detail-item');
-                    detailItems.forEach(item => {
-                        const icon = item.querySelector('i');
-                        if (icon && icon.classList.contains('fa-download')) {
-                            const span = item.querySelector('span');
-                            if (span) {
-                                span.textContent = count + ' downloads';
-                                // Add visual feedback
-                                span.style.color = '#4CAF50';
-                                span.style.fontWeight = 'bold';
-                                setTimeout(() => {
-                                    span.style.color = '';
-                                    span.style.fontWeight = '';
-                                }, 1000);
-                            }
-                        }
-                    });
-                }
-            });
-        }
-        
-        function showDownloadNotification(count) {
-            // Create and show a temporary notification
-            const notification = document.createElement('div');
-            notification.className = 'download-notification show';
-            
-            notification.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <div class="message">Download started! Total downloads: ${count}</div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Remove notification after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-        
-        // Initialize download counts on page load
-        function initializeDownloadCounts() {
-            const downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
-            
-            // Get all plugin IDs from download buttons
-            const pluginIds = new Set();
-            document.querySelectorAll('.download-button').forEach(button => {
-                const onclick = button.getAttribute('onclick');
-                if (onclick) {
-                    const match = onclick.match(/handleDownload\('([^']+)'/);
-                    if (match) {
-                        pluginIds.add(match[1]);
-                    }
-                }
-            });
-            
-            // Update counts for each plugin
-            pluginIds.forEach(pluginId => {
-                if (downloadStats[pluginId]) {
-                    updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
-                } else {
-                    // Initialize with 0 if no stats exist
-                    downloadStats[pluginId] = { downloads: 0, lastDownload: null };
-                }
-            });
-            
-            // Save initialized stats
-            localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
-        }
         
         // Load and display existing download counts when page loads
         document.addEventListener('DOMContentLoaded', function() {
