@@ -1,0 +1,94 @@
+_TekkSchuster_ PROPRIETARY LICENSE  
+Version 1.0 – 2025  
+Copyright (c) 2025 _TekkSchuster_. All rights reserved.
+
+This License Agreement (“Agreement”) governs the use of all plugins (“Software”) developed and released by _TekkSchuster_ in this repository or any related official platform.
+
+By installing, copying, downloading, or using any Software provided under this Agreement, you agree to be bound by its terms. If you do not accept these terms, you may not use the Software.
+
+---
+
+1. Ownership
+
+All rights, title, and interest in the Software including all intellectual property rights remain exclusively with _TekkSchuster_. This License does not grant ownership or any rights not expressly stated herein.
+
+---
+
+2. Grant of License
+
+You are granted a limited, non-exclusive, non-transferable, and non-sublicensable license to use the Software **solely for personal or non-commercial use** on Minecraft servers.
+
+---
+
+3. Restrictions
+
+You may **not**, under any circumstances:
+
+a) Redistribute, resell, sublicense, rent, or publicly share the Software  
+b) Modify, decompile, disassemble, reverse engineer, or attempt to access the source code  
+c) Claim authorship or create derivative works based on the Software  
+d) Remove or obscure copyright or proprietary notices  
+e) Circumvent gameplay or technical restrictions defined by _TekkSchuster_  
+f) Store the Software or related elements in restricted in-game containers if disallowed (e.g., ender chests, shulker boxes, hoppers, barrels)
+
+---
+
+4. Termination
+
+This License will terminate immediately if any term is violated. Upon termination, you must discontinue use of the Software and delete all copies in your possession or control.
+
+---
+
+5. Disclaimer of Warranty
+
+The Software is provided **“AS IS”**, without warranties of any kind, express or implied. This includes but is not limited to:
+
+- Warranties of merchantability  
+- Fitness for a particular purpose  
+- Accuracy or reliability  
+- Compatibility with other plugins or platforms
+
+You use the Software entirely at your own risk.
+
+---
+
+6. Limitation of Liability
+
+Under no circumstances shall _TekkSchuster_ be liable for:
+
+- Data loss  
+- Server outages or performance issues  
+- Player-related disruptions  
+- Security breaches  
+- Conflicts with third-party software  
+- Any indirect, incidental, special, or consequential damages
+
+Responsibility for misuse or abuse whether intentional or accidental lies solely with the server owner or user.
+
+---
+
+7. Governing Law and Jurisdiction
+
+This Agreement is governed by the laws of the **Federal Republic of Germany**. Legal disputes shall be handled exclusively in the competent courts of Germany.
+
+---
+
+8. Contact
+
+For licensing inquiries, commercial permissions, or legal concerns, contact _TekkSchuster_ via the official GitHub profile or designated support links.
+
+---
+
+9. Official Distribution and Verification
+
+The Software is **only officially distributed via _TekkSchuster_’s GitHub repository or GitHub Pages site**. Any copy obtained from third-party sources, unofficial mirrors, or external forums is considered **unauthorized and unsupported**.
+
+To ensure authenticity and integrity:
+
+- Official `.jar` files may be **digitally signed** by _TekkSchuster_  
+- Each release may include a **SHA-256 checksum** for verification  
+- Users are encouraged to verify file authenticity using tools such as `jarsigner`, `gpg`, or a checksum utility
+
+_TekkSchuster_ assumes no liability for modified, rehosted, or redistributed versions of the Software obtained outside of authorized GitHub channels. Use of such files is at your own risk.
+
+---
