@@ -8,14 +8,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent-primary: #238636;
-            --accent-hover: #2ea043;
-            --border-color: #30363d;
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1f2937;
+            --bg-card: #1e293b;
+            --bg-elevated: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-accent: #e2e8f0;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #6366f1;
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-error: #ef4444;
+            --border-primary: #374151;
+            --border-secondary: #4b5563;
+            --border-accent: #6b7280;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --warning-color: #f85149;
             --warning-bg: rgba(248, 81, 73, 0.1);
         }
@@ -27,11 +43,110 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            font-size: 16px;
+            font-weight: 400;
             overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.875rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .hero {
+                margin-bottom: 3rem;
+                padding: 1rem 0;
+            }
+
+            .plugins-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .plugin-card {
+                padding: 1.5rem;
+            }
+
+            .download-buttons {
+                gap: 0.5rem;
+            }
+
+            .download-button {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.8125rem;
+            }
+
+            .download-notification {
+                top: 16px;
+                right: 16px;
+                left: 16px;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .plugin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .plugin-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .download-button {
+                justify-content: center;
+            }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -45,38 +160,61 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(13, 17, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border-primary);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        header:hover {
+            background: rgba(17, 24, 39, 0.98);
+            box-shadow: var(--shadow-xl);
         }
 
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 0;
+            padding: 20px 0;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 1.875rem;
             font-weight: 700;
             color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.75rem;
+            letter-spacing: -0.025em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
         }
 
         .logo i {
             color: var(--accent-primary);
+            font-size: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo:hover i {
+            color: var(--accent-secondary);
+            transform: rotate(5deg) scale(1.05);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 2.5rem;
             align-items: center;
         }
 
@@ -84,23 +222,75 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 14px;
-            transition: color 0.2s ease;
-            padding: 8px 0;
+            font-size: 0.9375rem;
+            letter-spacing: 0.025em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a.active {
             color: var(--text-primary);
         }
 
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
         /* Main Content */
         main {
-            margin-top: 80px;
-            padding: 40px 0;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 400;
         }
 
         .page-header {
@@ -160,68 +350,102 @@
         /* Plugins Grid */
         .plugins-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .plugin-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .plugin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .plugin-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .plugin-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 8px 32px rgba(35, 134, 54, 0.2);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border-secondary);
+        }
+
+        .plugin-card:hover::before {
+            opacity: 0.03;
         }
 
         .plugin-header {
             display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .plugin-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-primary);
-            border-radius: 8px;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.75rem;
             color: white;
-            font-size: 20px;
             flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .plugin-info {
+            flex: 1;
+            min-width: 0;
         }
 
         .plugin-info h3 {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 1.375rem;
+            font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+            line-height: 1.3;
         }
 
         .plugin-version {
-            font-size: 12px;
-            color: var(--text-secondary);
-            background: var(--bg-tertiary);
-            padding: 2px 8px;
-            border-radius: 4px;
+            font-size: 0.8125rem;
+            color: var(--text-accent);
+            background: var(--bg-elevated);
+            padding: 0.375rem 0.875rem;
+            border-radius: 12px;
             display: inline-block;
+            font-weight: 500;
+            border: 1px solid var(--border-secondary);
         }
 
         .plugin-description {
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 1.75rem;
+            line-height: 1.65;
+            font-size: 0.9375rem;
         }
 
         .plugin-details {
@@ -275,25 +499,61 @@
 
         .download-button {
             width: 100%;
-            background: var(--accent-primary);
+            background: linear-gradient(135deg, #238636, #2ea043);
             color: white;
             border: none;
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            letter-spacing: 0.025em;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .download-button:hover::before {
+            opacity: 1;
         }
 
         .download-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #2ea043, #40c463);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-button:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.1s ease;
+        }
+
+        .download-button i {
+            font-size: 0.875rem;
+            transition: transform 0.3s ease;
+        }
+
+        .download-button:hover i {
+            transform: scale(1.05);
         }
 
         .download-button:disabled {
@@ -301,6 +561,19 @@
             color: var(--text-secondary);
             cursor: not-allowed;
             transform: none;
+        }
+
+        .download-button.secondary {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-secondary);
+        }
+
+        .download-button.secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+            color: var(--text-accent);
+            box-shadow: var(--shadow-md);
         }
 
         /* Coming Soon Card */
@@ -443,6 +716,61 @@
             }
         }
 
+        /* Download Notification */
+        .download-notification {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-primary);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .download-notification.show {
+            transform: translateX(0);
+        }
+
+        .download-notification i {
+            color: var(--accent-success);
+            font-size: 1.125rem;
+        }
+
+        .download-notification .message {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        @keyframes slideInBounce {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            60% {
+                transform: translateX(-8px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .download-notification.show {
+            animation: slideInBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -560,15 +888,15 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                     </div>
                     
                     <div class="download-buttons-group">
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/TekkSchusta/Plugins/releases/download/v1.0.0/pale-garden-plugin-1.0.0.jar')">
+                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/pale-garden-plugin-1.0.0.jar')">
                             <i class="fas fa-download"></i>
                             Download
                         </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/TekkSchusta/Plugins/releases/download/v1.0.0/LICENSE.txt')">
+                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/LICENSE.txt')">
                             <i class="fas fa-download"></i>
-                            Liecense
+                            License
                         </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/TekkSchusta/Plugins/releases/download/v1.0.0/README.md')">
+                        <button class="download-button" onclick="handleDownload('plugin_1749892669017', 'https://github.com/LilHardTekk/Plugins/releases/download/v1.0.0/README.md')">
                             <i class="fas fa-download"></i>
                             ReadMe
                         </button></div>
@@ -620,18 +948,18 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
                     </div>
                     
                     <div class="download-buttons-group">
-                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/TekkSchusta/Plugins/releases/download/Bridgev1.0.0/DiscordBridge-1.0.0.jar')">
+                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/DiscordBridge-1.0.0.jar')">
                             <i class="fas fa-download"></i>
                             Download
                         </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/TekkSchusta/Plugins/releases/download/Bridgev1.0.0/README.md')">
-                            <i class="fas fa-download"></i>
-                            Read Me
-                        </button>
-                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/TekkSchusta/Plugins/releases/download/Bridgev1.0.0/LICENSE.txt')">
-                            <i class="fas fa-download"></i>
-                            Liecense
-                        </button></div>
+                        <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/LICENSE.txt')">
+                             <i class="fas fa-download"></i>
+                             License
+                         </button>
+                         <button class="download-button" onclick="handleDownload('plugin_1749894029020', 'https://github.com/LilHardTekk/Plugins/releases/download/Bridgev1.0.0/README.md')">
+                             <i class="fas fa-download"></i>
+                             README
+                         </button></div>
                 </div>
             </div>
         </div>
@@ -716,9 +1044,119 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
             observer.observe(el);
         });
     
-        // Download tracking functionality
-        function handleDownload(pluginId, downloadUrl) {
-            // Track download in localStorage
+        // Persistent download tracking that modifies the HTML file itself
+        async function handleDownload(pluginId, downloadUrl) {
+            try {
+                // Get current download count from the DOM
+                const currentCount = getCurrentDownloadCount(pluginId);
+                const newCount = currentCount + 1;
+                
+                // Update the HTML file with new count
+                await updateHTMLFile(pluginId, newCount);
+                
+                // Update UI immediately
+                updateDownloadCount(pluginId, newCount);
+                
+                // Show download notification
+                showDownloadNotification(newCount);
+                
+                // Also save to localStorage as backup
+                saveToLocalStorage(pluginId, newCount);
+                
+            } catch (error) {
+                console.error('Error updating download count:', error);
+                // Fallback to localStorage only
+                fallbackTrackDownload(pluginId);
+            }
+            
+            // Trigger actual download
+            window.open(downloadUrl, '_blank');
+        }
+        
+        // Get current download count from DOM
+        function getCurrentDownloadCount(pluginId) {
+            const downloadButtons = document.querySelectorAll(`[onclick*="handleDownload('${pluginId}'"]`);
+            if (downloadButtons.length > 0) {
+                const pluginCard = downloadButtons[0].closest('.plugin-card');
+                if (pluginCard) {
+                    const downloadSpan = pluginCard.querySelector('.fas.fa-download').nextElementSibling;
+                    if (downloadSpan) {
+                        const match = downloadSpan.textContent.match(/(\d+)/);
+                        return match ? parseInt(match[1]) : 0;
+                    }
+                }
+            }
+            return 0;
+        }
+        
+        // Update the HTML file with new download count
+        async function updateHTMLFile(pluginId, newCount) {
+            try {
+                // Get the current HTML content
+                const response = await fetch(window.location.href);
+                let htmlContent = await response.text();
+                
+                // Find and replace the download count for this plugin
+                const regex = new RegExp(
+                    `(handleDownload\\('${pluginId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}'[^>]*>[\s\S]*?<i class="fas fa-download"><\/i>\s*<span>)\d+(\s*downloads<\/span>)`,
+                    'g'
+                );
+                
+                const updatedContent = htmlContent.replace(regex, `$1${newCount}$2`);
+                
+                // Try to save using File System Access API (if supported)
+                if ('showSaveFilePicker' in window) {
+                    const fileHandle = await window.showSaveFilePicker({
+                        suggestedName: 'downloads.html',
+                        types: [{
+                            description: 'HTML files',
+                            accept: { 'text/html': ['.html'] }
+                        }]
+                    });
+                    
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(updatedContent);
+                    await writable.close();
+                    
+                    console.log('Download count updated in HTML file');
+                } else {
+                    // Fallback: Create download link for updated file
+                    const blob = new Blob([updatedContent], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'downloads_updated.html';
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    console.log('Updated HTML file downloaded. Please replace the original file.');
+                }
+                
+            } catch (error) {
+                console.error('Error updating HTML file:', error);
+                throw error;
+            }
+        }
+        
+        // Save to localStorage as backup
+        function saveToLocalStorage(pluginId, count) {
+            let downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
+            
+            if (!downloadStats[pluginId]) {
+                downloadStats[pluginId] = { downloads: 0, lastDownload: null };
+            }
+            
+            downloadStats[pluginId].downloads = count;
+            downloadStats[pluginId].lastDownload = new Date().toISOString();
+            
+            localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
+        }
+        
+        // Fallback tracking using localStorage only
+        function fallbackTrackDownload(pluginId) {
             let downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
             
             if (!downloadStats[pluginId]) {
@@ -733,31 +1171,245 @@ The PaleGarden plugin transforms your Minecraft world into a surreal, pale-theme
             // Update download count in UI
             updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
             
-            // Trigger actual download
-            window.open(downloadUrl, '_blank');
+            // Show download notification
+            showDownloadNotification(downloadStats[pluginId].downloads);
         }
         
         function updateDownloadCount(pluginId, count) {
-            // Find and update download count in the UI
+            // Find and update download count in the UI using multiple methods
             const pluginCards = document.querySelectorAll('.plugin-card');
+            
             pluginCards.forEach(card => {
-                const downloadButton = card.querySelector('.download-button');
-                if (downloadButton && downloadButton.onclick && downloadButton.onclick.toString().includes(pluginId)) {
-                    const downloadCountElement = card.querySelector('.detail-item:nth-child(2) span');
-                    if (downloadCountElement) {
-                        downloadCountElement.textContent = count + ' downloads';
+                // Check if this card contains the plugin by looking at download buttons
+                const downloadButtons = card.querySelectorAll('.download-button');
+                let isCorrectCard = false;
+                
+                downloadButtons.forEach(button => {
+                    const onclick = button.getAttribute('onclick');
+                    if (onclick && onclick.includes(pluginId)) {
+                        isCorrectCard = true;
                     }
+                });
+                
+                if (isCorrectCard) {
+                    // Find the download count element (it's the second detail-item with fa-download icon)
+                    const detailItems = card.querySelectorAll('.detail-item');
+                    detailItems.forEach(item => {
+                        const icon = item.querySelector('i');
+                        if (icon && icon.classList.contains('fa-download')) {
+                            const span = item.querySelector('span');
+                            if (span) {
+                                span.textContent = count + ' downloads';
+                                // Add visual feedback
+                                span.style.color = '#4CAF50';
+                                span.style.fontWeight = 'bold';
+                                setTimeout(() => {
+                                    span.style.color = '';
+                                    span.style.fontWeight = '';
+                                }, 1000);
+                            }
+                        }
+                    });
                 }
             });
         }
         
-        // Load and display current download counts on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        function showDownloadNotification(count) {
+            // Create and show a temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'download-notification show';
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <div class="message">Download started! Total downloads: ${count}</div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialize download counts on page load
+        function initializeDownloadCounts() {
             const downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
+            
+            // Get all plugin IDs from download buttons
+            const pluginIds = new Set();
+            document.querySelectorAll('.download-button').forEach(button => {
+                const onclick = button.getAttribute('onclick');
+                if (onclick) {
+                    const match = onclick.match(/handleDownload\('([^']+)'/);
+                    if (match) {
+                        pluginIds.add(match[1]);
+                    }
+                }
+            });
+            
+            // Update counts for each plugin
+            pluginIds.forEach(pluginId => {
+                if (downloadStats[pluginId]) {
+                    updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
+                } else {
+                    // Initialize with 0 if no stats exist
+                    downloadStats[pluginId] = { downloads: 0, lastDownload: null };
+                }
+            });
+            
+            // Save initialized stats
+            localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
+        }
+        
+        // Load and display existing download counts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load download stats from localStorage
+            const downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
+            
+            // Update all download counts on page load
             Object.keys(downloadStats).forEach(pluginId => {
                 updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
             });
+            
+            // Also sync with current DOM values (in case HTML was manually updated)
+            syncDownloadCounts();
         });
+        
+        // Sync download counts between DOM and localStorage
+        function syncDownloadCounts() {
+            const pluginCards = document.querySelectorAll('.plugin-card');
+            let downloadStats = JSON.parse(localStorage.getItem('tekkschuster_download_stats') || '{}');
+            let updated = false;
+            
+            pluginCards.forEach(card => {
+                const downloadButton = card.querySelector('[onclick*="handleDownload("]');
+                if (downloadButton) {
+                    const onclickAttr = downloadButton.getAttribute('onclick');
+                    const pluginIdMatch = onclickAttr.match(/handleDownload\('([^']+)'/);
+                    
+                    if (pluginIdMatch) {
+                        const pluginId = pluginIdMatch[1];
+                        const currentDOMCount = getCurrentDownloadCount(pluginId);
+                        
+                        if (!downloadStats[pluginId]) {
+                            downloadStats[pluginId] = { downloads: currentDOMCount, lastDownload: null };
+                            updated = true;
+                        } else if (downloadStats[pluginId].downloads < currentDOMCount) {
+                            // DOM has higher count, update localStorage
+                            downloadStats[pluginId].downloads = currentDOMCount;
+                            updated = true;
+                        } else if (downloadStats[pluginId].downloads > currentDOMCount) {
+                            // localStorage has higher count, update DOM
+                            updateDownloadCount(pluginId, downloadStats[pluginId].downloads);
+                        }
+                    }
+                }
+            });
+            
+            if (updated) {
+                localStorage.setItem('tekkschuster_download_stats', JSON.stringify(downloadStats));
+            }
+        }
+        
+        // Floating particles animation
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+            `;
+            document.body.appendChild(particlesContainer);
+            
+            for (let i = 0; i < 50; i++) {
+                createParticle(particlesContainer);
+            }
+        }
+        
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            const size = Math.random() * 4 + 2;
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * 5;
+            
+            particle.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1});
+                border-radius: 50%;
+                left: ${Math.random() * 100}%;
+                top: 100%;
+                animation: float ${duration}s linear ${delay}s infinite;
+                box-shadow: 0 0 ${size * 2}px rgba(255, 255, 255, 0.3);
+            `;
+            
+            container.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                    createParticle(container); // Create new particle
+                }
+            }, (duration + delay) * 1000);
+        }
+        
+        // Add floating animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(0) translateX(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            .download-notification {
+                animation: slideInBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+            
+            @keyframes slideInBounce {
+                0% {
+                    transform: translateX(100%) scale(0.8);
+                    opacity: 0;
+                }
+                50% {
+                    transform: translateX(-10%) scale(1.05);
+                }
+                100% {
+                    transform: translateX(0) scale(1);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+        });
+        
     </script>
 </body>
 </html>
